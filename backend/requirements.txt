@@ -1,0 +1,8 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+motor==3.6.0
+pymongo==4.9.2
+PyJWT==2.10.1
+python-multipart==0.0.20
+# solo per sviluppo locale senza MongoDB (MONGODB_URI non impostata):
+mongomock-motor==0.0.34

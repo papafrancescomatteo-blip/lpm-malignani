@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: lpm-malignani
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: MONGODB_URI
+        sync: false          # stringa di connessione di MongoDB Atlas
+      - key: MONGODB_DB
+        value: lpm_malignani
+      - key: JWT_SECRET
+        generateValue: true  # generato da Render
+      - key: PUBLIC_URL
+        sync: false          # es. https://lpm-malignani.onrender.com
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false          # password del primo accesso (cambiala dopo)
+      - key: EMAIL_PROVIDER
+        value: brevo
+      - key: BREVO_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false          # mittente verificato su Brevo
+      - key: MAIL_FROM_NAME
+        value: Laboratorio Prove Materiali - ITI Malignani
+      - key: MAIL_REPLY_TO
+        value: laboratorio@malignani.ud.it
